@@ -11,6 +11,8 @@
             --btn-bg: #ff4757;
             --btn-hover: #ff6b81;
             --shadow: rgba(0,0,0,0.1);
+            --input-bg: #ffffff;
+            --input-border: #dfe6e9;
         }
 
         body.dark-mode {
@@ -20,6 +22,8 @@
             --btn-bg: #e67e22;
             --btn-hover: #f39c12;
             --shadow: rgba(0,0,0,0.4);
+            --input-bg: #2d3436;
+            --input-border: #636e72;
         }
 
         body {
@@ -27,15 +31,23 @@
             color: var(--text-color);
             text-align: center;
             font-family: '맑은 고딕', sans-serif;
-            margin-top: 100px;
+            margin-top: 50px;
+            padding-bottom: 100px;
             transition: background-color 0.3s, color 0.3s;
         }
-        .machine {
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        .machine, .contact-form {
             background-color: var(--card-bg);
-            padding: 50px;
+            padding: 40px;
             border-radius: 20px;
             box-shadow: 0px 10px 20px var(--shadow);
-            display: inline-block;
+            width: 100%;
+            max-width: 500px;
             transition: background-color 0.3s, box-shadow 0.3s;
             position: relative;
         }
@@ -52,9 +64,9 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        button.draw-btn {
-            padding: 15px 40px;
-            font-size: 22px;
+        button.draw-btn, button.submit-btn {
+            padding: 12px 30px;
+            font-size: 18px;
             font-weight: bold;
             background-color: var(--btn-bg);
             color: white;
@@ -63,23 +75,23 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        button.draw-btn:hover {
+        button:hover {
             transform: scale(1.05);
             background-color: var(--btn-hover);
         }
         #result {
-            margin-top: 40px;
+            margin-top: 30px;
             min-height: 80px;
         }
         
         .ball {
             display: inline-block;
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
+            width: 55px;
+            height: 55px;
+            line-height: 55px;
             border-radius: 50%;
-            margin: 0 10px;
-            font-size: 24px;
+            margin: 5px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
             box-shadow: inset -5px -5px 10px rgba(0,0,0,0.2), 3px 3px 8px rgba(0,0,0,0.3);
@@ -96,15 +108,65 @@
         .red { background-color: #e84118; }
         .gray { background-color: #7f8fa6; }
         .green { background-color: #4cd137; }
+
+        /* Form Styling */
+        .contact-form h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--input-border);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
     </style>
 </head>
 <body>
 
-    <div class="machine">
-        <button class="mode-toggle" onclick="toggleMode()">다크 모드</button>
-        <h1>🎰 인생역전 로또 추첨기</h1>
-        <button class="draw-btn" onclick="drawLotto()">당첨 번호 뽑기!</button>
-        <div id="result"></div>
+    <div class="container">
+        <div class="machine">
+            <button class="mode-toggle" onclick="toggleMode()">다크 모드</button>
+            <h1>🎰 로또 추첨기</h1>
+            <button class="draw-btn" onclick="drawLotto()">당첨 번호 뽑기!</button>
+            <div id="result"></div>
+        </div>
+
+        <div class="contact-form">
+            <h2>🤝 제휴 문의</h2>
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label>성함/기업명</label>
+                    <input type="text" name="name" required placeholder="예: 홍길동 / (주)로또컴퍼니">
+                </div>
+                <div class="form-group">
+                    <label>이메일 주소</label>
+                    <input type="email" name="_replyto" required placeholder="example@email.com">
+                </div>
+                <div class="form-group">
+                    <label>문의 내용</label>
+                    <textarea name="message" required placeholder="제휴하고 싶은 내용을 적어주세요."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">문의 보내기</button>
+            </form>
+        </div>
     </div>
 
     <script>
