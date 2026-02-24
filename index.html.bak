@@ -105,18 +105,6 @@
             transition: 0.3s ease;
             box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
         }
-        .result-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .bonus-ball {
-            border: 3px dashed var(--accent-color); /* 보너스 볼은 점선 테두리 */
-            background-color: var(--card-bg);
-            color: var(--text-color); /* 다크 모드에서도 잘 보이도록 */
-        }
         button.draw-btn:hover {
             transform: translateY(-3px);
             background-color: var(--btn-hover);
@@ -126,15 +114,6 @@
             min-height: 100px;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-        }
-        #result-bonus {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--input-border);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
         }
         
@@ -191,7 +170,7 @@
             margin-bottom: 8px;
             font-weight: bold;
         }
-        .form-group input, .form-group textarea, .form-group select { /* select도 추가 */
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 12px;
             border: 1px solid var(--input-border);
@@ -238,7 +217,7 @@
     <nav>
         <a href="/" class="logo">🎰 로또 스마트 분석</a>
         <div class="nav-links">
-            <a href="#site-intro">소개</a> <!-- 소개 링크 수정 -->
+            <a href="#about">소개</a>
             <a href="#stats">확률 정보</a>
             <a href="#contact">문의</a>
             <a href="javascript:void(0)" onclick="toggleMode()">모드 전환</a>
@@ -246,25 +225,18 @@
     </nav>
 
     <div class="container">
-        <!-- Site Introduction -->
-        <div id="site-intro" class="content-card">
-            <h2>개발자 김민석의 로또 추첨기 프로젝트</h2>
-            <p>정보통신공학을 전공하는 김민석입니다. 이 프로젝트는 사용자들에게 즐거움과 작은 행운을 선사하기 위해 개발되었습니다. 캡스톤 디자인 프로젝트의 일환으로 시작되었으며, 웹 기술과 난수 생성 알고리즘에 대한 저의 이해를 바탕으로 만들어졌습니다. 기술적 호기심과 실용적인 재미를 동시에 추구하는 저의 여정을 함께 지켜봐 주세요.</p>
-        </div>
-
         <!-- Main Tool -->
         <main class="machine">
             <h1>🎰 오늘의 행운 번호 추첨</h1>
             <p>복잡한 계산은 잊으세요. 스마트한 알고리즘이 당신의 행운을 찾아드립니다.</p>
             <button class="draw-btn" onclick="drawLotto()">지금 번호 뽑기</button>
-            <div id="result" class="result-group"></div>
-            <div id="result-bonus"></div>
+            <div id="result"></div>
         </main>
 
         <!-- Educational Content 1 -->
         <section id="about" class="content-card">
             <h2>인생역전 로또 추첨기란?</h2>
-            <p>본 서비스는 사용자의 브라우저에서 실행되는 <strong>난수 생성 알고리즘</strong>을 활용하여 로또 번호를 생성합니다. 단순한 난수가 아닌, 매 실행 시마다 고유한 시드값을 활용하여 번호의 분산도를 최적화했습니다.</p>
+            <p>본 서비스는 사용자의 브라우저에서 실행되는 <strong>난수 생성 알고리즘(Mersenne Twister 기반)</strong>을 활용하여 로또 번호를 생성합니다. 단순한 난수가 아닌, 매 실행 시마다 고유한 시드값을 활용하여 번호의 분산도를 최적화했습니다.</p>
             <p>로또 6/45의 규칙을 완벽하게 준수하며, 생성된 번호는 즉각적으로 사용자에게 시각화되어 제공됩니다. 모든 과정은 무료이며, 어떤 데이터도 서버에 저장되지 않아 안전합니다.</p>
         </section>
 
@@ -272,31 +244,13 @@
         <section id="stats" class="content-card">
             <h2>로또 당첨 확률과 통계</h2>
             <p>대한민국 로또 6/45의 1등 당첨 확률은 <strong>8,145,060분의 1</strong>입니다. 이는 벼락을 맞을 확률보다 낮다고 알려져 있지만, 매주 누군가는 이 행운의 주인공이 됩니다.</p>
-            <ul style="list-style-type: none; padding: 0;">
+            <ul>
                 <li><strong>1등 (6개 일치):</strong> 1 / 8,145,060</li>
                 <li><strong>2등 (5개 + 보너스):</strong> 1 / 1,357,510</li>
                 <li><strong>3등 (5개 일치):</strong> 1 / 35,724</li>
                 <li><strong>4등 (4개 일치):</strong> 1 / 733</li>
-                <li><strong>5등 (3개 일치):</strong> 1 / 45</li>
             </ul>
             <p>본 추첨기는 이러한 확률적 기댓값을 바탕으로 번호를 생성하며, 사용자에게 즐거움과 영감을 제공하는 것을 목적으로 합니다. 과도한 몰입보다는 건전한 유희로 즐겨주시길 권장합니다.</p>
-        </section>
-
-        <!-- Adsense Ad Slot (Example) -->
-        <section class="content-card" style="text-align: center;">
-            <h3>스폰서 광고</h3>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1816550186474517"
-                 crossorigin="anonymous"></script>
-            <!-- Lotto_Responsive_Ad -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-1816550186474517"
-                 data-ad-slot="1234567890"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </section>
 
         <!-- Contact Form -->
@@ -304,15 +258,6 @@
             <h2>🤝 제휴 및 기술 문의</h2>
             <p>도구 개선 제안이나 비즈니스 제휴 문의는 언제든 환영합니다.</p>
             <form action="https://formspree.io/f/xgolregk" method="POST">
-                <div class="form-group">
-                    <label>문의 유형</label>
-                    <select name="type" class="form-group-select"> <!-- 클래스 추가 -->
-                        <option value="제휴문의">제휴 문의</option>
-                        <option value="버그신고">버그 신고</option>
-                        <option value="기능제안">기능 제안</option>
-                        <option value="기타">기타</option>
-                    </select>
-                </div>
                 <div class="form-group">
                     <label>성함/기업명</label>
                     <input type="text" name="name" required placeholder="성함을 입력해주세요">
@@ -345,43 +290,30 @@
     </footer>
 
     <script>
-        // Disqus 설정 (Shortname을 사용자 레포지토리에 맞게 수정해야 함)
-        var disqus_config = function () {
-            this.page.url = "https://m-seok01.github.io/test-test/";  // 실제 배포될 URL
-            this.page.identifier = "lotto-smart-analyzer"; // 페이지 고유 식별자
-        };
-        
         function toggleMode() {
             const body = document.body;
             body.classList.toggle('dark-mode');
         }
 
         function drawLotto() {
-            let mainNumbers = [];
-            while (mainNumbers.length < 6) {
+            let numbers = [];
+            while (numbers.length < 6) {
                 let num = Math.floor(Math.random() * 45) + 1;
-                if (!mainNumbers.includes(num)) {
-                    mainNumbers.push(num);
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
                 }
             }
-            mainNumbers.sort((a, b) => a - b);
-
-            let bonusNumber;
-            do {
-                bonusNumber = Math.floor(Math.random() * 45) + 1;
-            } while (mainNumbers.includes(bonusNumber)); // 메인 번호와 중복되지 않도록
+            numbers.sort((a, b) => a - b);
             
-            // 메인 번호 결과 표시
             let resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = ""; // 예전 번호 청소하기
+            resultDiv.innerHTML = "";
             
-            mainNumbers.forEach((num, index) => {
+            numbers.forEach((num, index) => {
                 setTimeout(() => {
                     let ball = document.createElement("div");
                     ball.className = "ball";
                     ball.innerText = num;
                     
-                    // 숫자에 맞는 색깔 옷 입혀주기
                     if (num <= 10) ball.classList.add("yellow");
                     else if (num <= 20) ball.classList.add("blue");
                     else if (num <= 30) ball.classList.add("red");
@@ -391,45 +323,15 @@
                     resultDiv.appendChild(ball);
                 }, index * 200);
             });
-
-            // 보너스 번호 결과 표시 (메인 번호 표시가 끝난 후)
-            let resultBonusDiv = document.getElementById("result-bonus");
-            resultBonusDiv.innerHTML = "";
-            setTimeout(() => {
-                let bonusLabel = document.createElement("span");
-                bonusLabel.innerText = "보너스 번호:";
-                bonusLabel.style.marginRight = "10px";
-                bonusLabel.style.fontWeight = "bold";
-                // 보너스 번호 라벨에 다크 모드 텍스트 색상 적용
-                bonusLabel.style.color = "var(--text-color)"; 
-                resultBonusDiv.appendChild(bonusLabel);
-
-                let bonusBall = document.createElement("div");
-                bonusBall.className = "ball bonus-ball";
-                bonusBall.innerText = bonusNumber;
-                // 보너스 번호에도 색깔 규칙 적용
-                if (bonusNumber <= 10) bonusBall.classList.add("yellow");
-                else if (bonusNumber <= 20) bonusBall.classList.add("blue");
-                else if (bonusNumber <= 30) bonusBall.classList.add("red");
-                else if (bonusNumber <= 40) bonusBall.classList.add("gray");
-                else bonusBall.classList.add("green");
-                
-                resultBonusDiv.appendChild(bonusBall);
-            }, mainNumbers.length * 200 + 500); // 메인 번호가 모두 나타난 후 0.5초 뒤
         }
 
         // Disqus Load
         (function() {
             var d = document, s = d.createElement('script');
-            s.src = 'https://lotto-smart-analyzer.disqus.com/embed.js'; // Disqus shortname 업데이트 필요
+            s.src = 'https://https-test-test1-pages-dev.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
-
-        // 초기 다크모드 설정 확인 (선택 사항)
-        // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        //     document.body.classList.add('dark-mode');
-        // }
     </script>
 </body>
 </html>
